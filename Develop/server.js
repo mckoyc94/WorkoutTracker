@@ -19,14 +19,14 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { use
 require("./routes/api-routes")(app)
 
 // Sends User to Index page
-app.get("/", (req, res)=> {
-  res.sendFile(path.join(__dirname, "../public/index.html"))
-})
+// app.get("/", (req, res)=> {
+//   res.sendFile(path.join(__dirname, "../public/index.html"))
+// })
 
-//Sends User to Stats page
-app.get("/stats", (req, res)=> {
-  res.sendFile(path.join(__dirname, "../public/stats.html"))
-})
+// //Sends User to Stats page
+// app.get("/stats", (req, res)=> {
+//   res.sendFile(path.join(__dirname, "../public/stats.html"))
+// })
 
 // Tells app to listen on PORT
 app.listen(PORT, () => {
