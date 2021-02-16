@@ -14,7 +14,12 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Links app to MongoDB database 'workout'
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { 
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false
+ });
 
 // Links app with api routes
 require("./routes/api-routes")(app)
