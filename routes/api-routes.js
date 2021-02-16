@@ -15,9 +15,30 @@ module.exports = app => {
         });
    })
 
-   app.get("/api/workout")
+   app.get("/api/workouts", (req, res) => {
+       Workout.aggregate([{ $addFields: { totalDuration: { $sum: "$exercises.duration" } } }])
+        .sort({name: -1})
+        .then(exercise => {
+            res.json(exercise)
+        })
+        .catch( err => {
+            res.status(400).json(err)
+        })
+   })
 
-   app.post("/api/workout", (req, res) => {
+   app.get("/api/workouts/range", (req, res) => {
+       Workout.aggregate([{ $addFields: { totalDuration: { $sum: "$exercises.duration" } } }])
+        .limit(7)
+        .sort({name: -1})
+        .then( exercise => {
+            res.json(exercise)
+        })
+        .catch(err => {
+            res.status(400).json(err)
+        })
+   })
+
+   app.post("/api/workouts", (req, res) => {
        Workout.create({})
         .then(exercise => {
             res.json(exercise)
