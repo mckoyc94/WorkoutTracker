@@ -14,4 +14,18 @@ module.exports = app => {
             res.status(400).json(err);
         });
    })
+
+   app.get("/api/workout")
+
+   app.post("/api/workout", (req, res) => {
+       Workout.create({})
+        .then(exercise => {
+            res.json(exercise)
+        })
+        .catch(err => {
+            res.status(400).json(err)
+        })
+   })
+
+
 }
