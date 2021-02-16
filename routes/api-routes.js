@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 const db = require("../models")
-const exercise = require('../models/exercise')
 const Workout = db.Workout
 
 module.exports = app => {
